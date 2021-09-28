@@ -4,7 +4,7 @@ namespace OTUS.SOLID
 {
 	class ConsoleGameInterface : IGameInterface
 	{
-		public int GetUserInput()
+		public int GetPlayerInput()
 		{
 			return int.Parse(Console.ReadLine()); 
 		}

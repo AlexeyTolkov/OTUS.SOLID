@@ -1,6 +1,6 @@
 ﻿namespace OTUS.SOLID
 {
-	public interface IGameInterface : IGameInput, IGameOutput
+	public interface IGameInterface : IPlayerInput, IGameOutput
 	{
 		
 	}

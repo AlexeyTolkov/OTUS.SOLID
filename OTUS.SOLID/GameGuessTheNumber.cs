@@ -2,54 +2,25 @@
 
 namespace OTUS.SOLID
 {
-	internal class GameGuessTheNumber
+	internal class GameGuessTheNumber : Game
 	{
-		private int _hiddenNumber;
-		private int _numberOfRetries;
-		private IGameInterface _gameInterface;
-		private bool _won;
-
 		public GameGuessTheNumber(
 			INumberGenerator numberGenerator,
 			IGameInterface gameInterface)
+			: base(numberGenerator, gameInterface)
 		{
-			_hiddenNumber = numberGenerator.GetNumber();
-			_numberOfRetries = Config.NumberOfRetires;
-			_gameInterface = gameInterface;
-			_won = false;
 		}
 
 		public void Play()
 		{
 			var currentAttempt = 1;
-			while (!_won && currentAttempt <= _numberOfRetries)
+			while (!IsTheGameOver(currentAttempt))
 			{
 				ShowMessage($"Попытка {currentAttempt} из {_numberOfRetries}");
-				
-				CheckTheGuess(_gameInterface.GetUserInput());
+				CheckTheGuess(_gameInterface.GetPlayerInput());
+
 				currentAttempt++;
 			}
-
-			IsPlayerWon();
-		}
-
-		private bool IsPlayerWon()
-		{
-			if (_won)
-			{
-				ShowMessage("Поздравляю! Вы угадали!!");
-			}
-			else
-			{
-				ShowMessage($"Загаданное число: {_hiddenNumber}");
-			}
-
-			return _won;
-		}
-
-		private void ShowMessage(string message)
-		{
-			_gameInterface.ShowOutput(message);
 		}
 
 		private void CheckTheGuess(int userNumber)

@@ -1,6 +1,6 @@
 ﻿namespace OTUS.SOLID
 {
-	abstract class Game
+	abstract class Game : IGame
 	{
 		protected int _hiddenNumber;
 		protected int _numberOfRetries;
@@ -16,6 +16,7 @@
 			_gameInterface = gameInterface;
 			_won = false;
 		}
+
 		internal void ShowEndOfGameMessage()
 		{
 			if (_won)
@@ -33,17 +34,11 @@
 			_gameInterface.ShowOutput(message);
 		}
 
-		internal bool IsTheGameOver(int currentAttempt)
+		internal virtual bool IsTheGameOver(int currentAttempt)
 		{
-			if (!_won && currentAttempt <= _numberOfRetries)
-			{
-				return false;
-			}
-			else
-			{
-				ShowEndOfGameMessage();
-				return true;
-			}
+			return !_won;
 		}
+
+		public abstract void Play();
 	}
 }

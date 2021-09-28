@@ -11,7 +11,7 @@ namespace OTUS.SOLID
 		{
 		}
 
-		public void Play()
+		public override void Play()
 		{
 			var currentAttempt = 1;
 			while (!IsTheGameOver(currentAttempt))
@@ -40,6 +40,19 @@ namespace OTUS.SOLID
 				{
 					ShowMessage("Меньше!");
 				}
+			}
+		}
+
+		internal override bool IsTheGameOver(int currentAttempt)
+		{
+			if (!_won && currentAttempt <= _numberOfRetries)
+			{
+				return false;
+			}
+			else
+			{
+				ShowEndOfGameMessage();
+				return true;
 			}
 		}
 	}

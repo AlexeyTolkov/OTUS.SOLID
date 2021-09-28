@@ -9,7 +9,9 @@
 Можно создать новые классы на основе интерфейсов INumberGenerator и IGameInterface и получить другую логику работы приложения. Классы закрыты на изменение, но открыты для расширения
 
 ### Liskov Substitution Principle (Принцип подстановки Лисков)
-Класс GameGuessTheNumber наследуется от абстрактного класса Game
+Класс GameGuessTheNumber наследуется от абстрактного класса Game.
+Объект класса передается в GameLauncher
+
 
 ### Interface Segregation Principle (Принцип разделения интерфейсов)
 Интерфейс IGameInterface имплементирует: IPlayerInput, IGameOutput для вводы/вывода данных.
